@@ -24,7 +24,7 @@ public:
     void postorder();
     int CountNodes();
     void GenerateHeap();
-    void StuffHeap(Node * inRoot, int InIndex);
+    void StuffHeap(Node * inRoot);
     void PrintHeap();
     void InsertionSortTheHeap();
     void SelectionSortTheHeap();
@@ -47,6 +47,7 @@ private:
 
     Node *rootNode;
     int * TheHeap;
+    int HeapIndex;
 };
 
 

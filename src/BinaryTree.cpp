@@ -115,15 +115,22 @@ void BinaryTree::PrintHeap()
     }
 }
 
-void BinaryTree::StuffHeap(Node * inRoot, int InIndex)
+void BinaryTree::StuffHeap(Node * inRoot)
 {
     //pre order
-    cout << " Putting inRoot->Data = " << inRoot->Data << " in space [" << InIndex << "]\n";
-    TheHeap[InIndex] = inRoot->Data;
+    int temp = HeapIndex;
+    TheHeap[HeapIndex] = inRoot->Data;
+    cout << "\nPutting inRoot->Data = " << inRoot->Data << " in TheHeap[" << HeapIndex << "]\n";
+    HeapIndex++;
     if (inRoot->Left != NULL)
-        StuffHeap(inRoot->Left, InIndex + 1);
+    {
+        StuffHeap(inRoot->Left);
+    }
     if (inRoot->Right != NULL)
-        StuffHeap(inRoot->Right, InIndex + 2);
+    {
+            StuffHeap(inRoot->Right);
+    }
+
 }
 
 void BinaryTree::GenerateHeap()
@@ -133,8 +140,9 @@ void BinaryTree::GenerateHeap()
     int temp = CountNodes();
     delete TheHeap;
     TheHeap = new int [temp];
+    HeapIndex = 1;
     TheHeap[0] = temp; //Store Array Size in Index 0
-    StuffHeap(rootNode, 1);
+    StuffHeap(rootNode);
 }
 
 void BinaryTree::inorder(Node * inRoot)
