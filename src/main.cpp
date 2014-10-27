@@ -1,3 +1,15 @@
+/*
+ John Bingley BST Implementation with sorts
+
+ I'll be honest I needed help from
+ google for a lot of this. I have a better
+ understanding of how recursion is just a
+ copy of the method pushed on the stack.
+
+ Still some bug in the stuffheap method. Sometimes the last member of the array is memory junk.
+ The sorts may be a bit buggy still. I tried to work out the sort on wiki
+ then refer to google for help fixing it.
+*/
 #include <conio.h>
 #include <iostream>
 #include "BinaryTree.h"
