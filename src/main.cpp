@@ -16,7 +16,10 @@ int main(){
     {
         clr();
         cout << "--Binary Search Tree Stuff--\n\n";
-        cout<<"1 = insert int\n2 = print pre order\n3 = print post order\n4 = print in order\n5 = Generate Heap Array From BST\np = Print Heap\ni = Insertion Sort Heap\ns = Selection Sort Heap\nb = Bubble Sort Heap\nh = Shell Sort Heap\nq = quit\n";
+        cout<<"1 = insert int to the BST\n2 = print pre order\n3 = print post order\n4 = print in order\n";
+        cout <<"5 = Generate Heap Array From BST\np = Print Heap\ni = Insertion Sort Heap\ns = Selection";
+        cout<<" Sort Heap\nb = Bubble Sort Heap\nh = Shell Sort Heap\ne = Heap Sort the Heap\nm =";
+        cout<<" Merge Sort the Heap\nu = QuickSort the Heap\nq = quit\n";
         input = getch();
         switch (input)
         {
@@ -76,6 +79,21 @@ int main(){
             case 'h' :
                 clr();
                 tree->ShellSortTheHeap();
+                p();
+            break;
+            case 'e' :
+                clr();
+                tree->HeapSortTheHeap();
+                p();
+            break;
+            case 'm' :
+                clr();
+                tree->MergeSortTheHeap();
+                p();
+            break;
+             case 'u' :
+                clr();
+                tree->QuickSortTheHeap();
                 p();
             break;
             default :

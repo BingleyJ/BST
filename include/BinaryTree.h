@@ -1,9 +1,6 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
 
-
-
-
 class BinaryTree
 {
 
@@ -31,7 +28,12 @@ public:
     void BubbleSortTheHeap();
     void ShellSortTheHeap();
     void HeapSortTheHeap();
+    void HeapSort(int* arr, int size);
+    void Heapify(int* arr, int low, int high);
+    void ShiftRight(int* arr, int low, int high);
     void MergeSortTheHeap();
+    void Mergesort(int *a, int lo, int hi);
+    void Mergearray(int *a, int lo, int mid, int hi);
     void QuickSortTheHeap();
     void BucketSortTheHeap();
 
@@ -39,6 +41,7 @@ public:
 
 
 private:
+    void QuickSortTheHeap(int *arr, int lo, int high);
     void insert(int data, Node *leaf);
     void inorder(Node * inRoot);
     void preorder(Node * inRoot);
@@ -47,7 +50,7 @@ private:
 
     Node *rootNode;
     int * TheHeap;
-    int HeapIndex;
+    int * HeapIndexPointer;
 };
 
 

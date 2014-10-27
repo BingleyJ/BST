@@ -1,7 +1,8 @@
 #include "BinaryTree.h"
 #include <cstddef>
 #include <iostream>
-
+#include <cassert>
+#include <stdlib.h>
 using namespace std;
 
 BinaryTree::BinaryTree()
@@ -12,6 +13,142 @@ BinaryTree::BinaryTree()
 BinaryTree::~BinaryTree()
 {
     //dtor
+}
+
+void BinaryTree::HeapSortTheHeap()
+{
+ //   if (rootNode)
+     HeapSort(TheHeap, TheHeap[0]);
+  //  else return;
+}
+
+void BinaryTree::MergeSortTheHeap()
+{
+    Mergesort(TheHeap, 1, TheHeap[0]);
+}
+
+void BinaryTree::QuickSortTheHeap()
+{
+    QuickSortTheHeap(TheHeap, 1, TheHeap[0]);
+}
+
+void BinaryTree::QuickSortTheHeap(int *arr, int low, int high)
+ {
+  int i = low, j = high;
+  int tmp;
+  int pivot = arr[abs((low + high) / 2)];
+
+  while (i <= j) {
+        while (arr[i] < pivot)
+              i++;
+        while (arr[j] > pivot)
+              j--;
+        if (i <= j) {
+              tmp = arr[i];
+              arr[i] = arr[j];
+              arr[j] = tmp;
+              i++;
+              j--;
+        }
+}
+if (low < j)
+    QuickSortTheHeap(arr, low, j);
+if (i< high)
+    QuickSortTheHeap(arr, i, high);
+}
+
+void BinaryTree::Mergesort(int *a, int lo, int hi)
+{
+    if(lo<hi)
+    {
+        int mid=((lo+hi)/2);
+        Mergesort(a,lo,mid);
+        Mergesort(a,mid+1,hi);
+        Mergearray(a,lo,mid,hi);
+    }
+}
+
+void BinaryTree::Mergearray(int *a, int lo, int mid, int hi)
+{
+    int i=lo;
+    int j=mid+1;
+    int k=0;
+    int *b=new int[hi-lo+1];
+    while(i<=mid && j<=hi)
+    {
+        if(a[i]<a[j]) //merging
+            b[k++]=a[i++];
+        else
+            b[k++]=a[j++];
+    }
+    while(i<=mid)
+        b[k++]=a[i++];
+    while(j<=hi)
+        b[k++]=a[j++];
+    for(i=hi;i>=lo;i--)
+        a[i]=b[--k];
+}
+
+void BinaryTree::ShiftRight(int* arr, int low, int high) // Stole half this sp;ution from the internet
+{
+    int root = low;
+    while ((root*2)+1 <= high)
+    {
+        int leftChild = (root * 2) + 1;
+        int rightChild = leftChild + 1;
+        int swapIdx = root;
+        if (arr[swapIdx] < arr[leftChild])
+        {
+            swapIdx = leftChild;
+        }
+        if ((rightChild <= high) && (arr[swapIdx] < arr[rightChild]))
+        {
+            swapIdx = rightChild;
+        }
+        //Make the biggest element of root, left and right child the root
+        if (swapIdx != root)
+        {
+            int tmp = arr[root];
+            arr[root] = arr[swapIdx];
+            arr[swapIdx] = tmp;
+            root = swapIdx;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return;
+}
+void BinaryTree::Heapify(int* arr, int low, int high)
+{
+    int midIdx = (high - low -1)/2;
+    while (midIdx >= 1)
+    {
+        ShiftRight(arr, midIdx, high);
+        --midIdx;
+    }
+    return;
+}
+
+
+void BinaryTree::HeapSort(int* arr, int size)
+{
+
+    assert(arr);
+    assert(size > 0);
+    Heapify(TheHeap, 1, size);
+    int high = size;
+    while (high > 1)
+    {
+        //Swap max element with high index in the array
+        int tmp = arr[high];
+        arr[high] = arr[1];
+        arr[1] = tmp;
+        --high;
+        ShiftRight(arr, 1, high);
+    }
+    return;
 }
 
 void BinaryTree::ShellSortTheHeap()
@@ -118,10 +255,9 @@ void BinaryTree::PrintHeap()
 void BinaryTree::StuffHeap(Node * inRoot)
 {
     //pre order
-    int temp = HeapIndex;
-    TheHeap[HeapIndex] = inRoot->Data;
-    cout << "\nPutting inRoot->Data = " << inRoot->Data << " in TheHeap[" << HeapIndex << "]\n";
-    HeapIndex++;
+    TheHeap[*HeapIndexPointer] = inRoot->Data;
+    cout << "\nPutting inRoot->Data = " << inRoot->Data << " in TheHeap[" << *HeapIndexPointer << "]\n";
+    (*HeapIndexPointer)++;
     if (inRoot->Left != NULL)
     {
         StuffHeap(inRoot->Left);
@@ -140,7 +276,8 @@ void BinaryTree::GenerateHeap()
     int temp = CountNodes();
     delete TheHeap;
     TheHeap = new int [temp];
-    HeapIndex = 1;
+    int HeapIndex = 1;
+    HeapIndexPointer = &HeapIndex;
     TheHeap[0] = temp; //Store Array Size in Index 0
     StuffHeap(rootNode);
 }
@@ -170,9 +307,7 @@ void BinaryTree::preorder(Node * inRoot)
         inorder(inRoot->Left);
     if (inRoot->Right != NULL)
         inorder(inRoot->Right);
-
 }
-
 
 
 void BinaryTree::inorder()
@@ -262,14 +397,10 @@ void BinaryTree::insert(int inData)
         //We have root go ahead and insert
         insert(inData, rootNode);
     else
-{
-    //Create Root node.
-    rootNode = new Node;
-    rootNode->Data = inData;
-    rootNode->Left = NULL;
-    rootNode->Right = NULL;
-}
-
-
-
+    {
+        rootNode = new Node;
+        rootNode->Data = inData;
+        rootNode->Left = NULL;
+        rootNode->Right = NULL;
+    }
 }
