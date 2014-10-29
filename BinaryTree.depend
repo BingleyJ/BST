@@ -23,16 +23,16 @@
 1411050523 source:c:\users\msbox\workspace\binarytree\binarytree\src\node.cpp
 	"Node.h"
 
-1414425093 source:c:\users\msbox\workspace\avltree\src\binarytree.cpp
+1414582520 source:c:\users\msbox\workspace\avltree\src\binarytree.cpp
 	"BinaryTree.h"
 	<cstddef>
 	<iostream>
 	<cassert>
 	<stdlib.h>
 
-1414425093 c:\users\msbox\workspace\avltree\include\binarytree.h
+1414451650 c:\users\msbox\workspace\avltree\include\binarytree.h
 
-1414425101 source:c:\users\msbox\workspace\avltree\src\main.cpp
+1414427321 source:c:\users\msbox\workspace\avltree\src\main.cpp
 	<conio.h>
 	<iostream>
 	"BinaryTree.h"

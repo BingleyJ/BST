@@ -16,20 +16,42 @@ BinaryTree::~BinaryTree()
 }
 
 void BinaryTree::HeapSortTheHeap()
+
 {
- //   if (rootNode)
-     HeapSort(TheHeap, TheHeap[0]);
-  //  else return;
+    if (rootNode)
+    {
+        cout << "Heapsort\n";
+        HeapSort(TheHeap, TheHeap[0]);
+    }
+
+    else{
+        cout << "Nothing to do\n" ;
+        return;
+    }
 }
 
-void BinaryTree::MergeSortTheHeap()
+    void BinaryTree::MergeSortTheHeap()
+
+
 {
-    Mergesort(TheHeap, 1, TheHeap[0]);
+    if (rootNode)
+    {
+        cout << "Merge Sort\n";
+        Mergesort(TheHeap, 1, TheHeap[0]);
+    }
+
+    else{cout << "Nothing to do\n"; return;}
 }
 
 void BinaryTree::QuickSortTheHeap()
 {
+    if (rootNode)
+    {
+        cout << "Quicksort Sort\n";
     QuickSortTheHeap(TheHeap, 1, TheHeap[0]);
+    }
+
+    else{cout << "Nothing to do\n";return;}
 }
 
 void BinaryTree::QuickSortTheHeap(int *arr, int low, int high)
@@ -153,6 +175,11 @@ void BinaryTree::HeapSort(int* arr, int size)
 
 void BinaryTree::ShellSortTheHeap()
 {
+    if (!rootNode)
+    {
+        cout << " nothing to do\n";
+        return;
+    }
     int middle;
     int temp;
     int i;
@@ -174,6 +201,11 @@ void BinaryTree::ShellSortTheHeap()
 
 void BinaryTree::BubbleSortTheHeap()
 {
+    if (!rootNode)
+    {
+        cout << " nothing to do\n";
+        return;
+    }
     bool sortedHeap = false;
     int elements = TheHeap[0];
     int j = -1;
@@ -198,6 +230,11 @@ void BinaryTree::BubbleSortTheHeap()
 
 void BinaryTree::SelectionSortTheHeap()
 {
+    if (!rootNode)
+    {
+        cout << " nothing to do\n";
+        return;
+    }
     int minpos;
     int temp;
     int elements = TheHeap[0];
@@ -222,6 +259,11 @@ void BinaryTree::SelectionSortTheHeap()
 
 void BinaryTree::InsertionSortTheHeap()
 {
+    if (!rootNode)
+    {
+        cout << " nothing to do\n";
+        return;
+    }
     int i,j;
     for(i=2; i<=TheHeap[0]; i++)
     {

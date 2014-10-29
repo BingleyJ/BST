@@ -37,9 +37,6 @@ public:
     void QuickSortTheHeap();
     void BucketSortTheHeap();
 
-
-
-
 private:
     void QuickSortTheHeap(int *arr, int lo, int high);
     void insert(int data, Node *leaf);
